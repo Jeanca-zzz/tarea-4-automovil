@@ -1,0 +1,113 @@
+package claseautomovil;
+
+
+public class Auto {
+    public enum TipoCombustible {
+        GASOLINA, BIOETANOL, DIESEL, BIODIESEL, GAS_NATURAL
+    }
+
+    public enum TipoAutomovil {
+        CIUDAD, SUBCOMPACTO, COMPACTO, FAMILIAR, EJECUTIVO, SUV
+    }
+
+    public enum Color {
+        BLANCO, NEGRO, ROJO, NARANJA, AMARILLO, VERDE, AZUL, VIOLETA
+    }
+
+    private String marca;
+    private int modelo;
+    private double motor;
+    private TipoCombustible tipoCombustible;
+    private TipoAutomovil tipoAutomovil;
+    private int numeroPuertas;
+    private int cantidadAsientos;
+    private int velocidadMaxima;
+    private Color color;
+    private int velocidadActual;
+
+    public Auto(String marca, int modelo, double motor, TipoCombustible tipoCombustible,
+                     TipoAutomovil tipoAutomovil, int numeroPuertas, int cantidadAsientos,
+                     int velocidadMaxima, Color color, int velocidadActual) {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.motor = motor;
+        this.tipoCombustible = tipoCombustible;
+        this.tipoAutomovil = tipoAutomovil;
+        this.numeroPuertas = numeroPuertas;
+        this.cantidadAsientos = cantidadAsientos;
+        this.velocidadMaxima = velocidadMaxima;
+        this.color = color;
+        this.velocidadActual = velocidadActual;
+    }
+
+    public String getMarca() { return marca; }
+    public void setMarca(String marca) { this.marca = marca; }
+
+    public int getModelo() { return modelo; }
+    public void setModelo(int modelo) { this.modelo = modelo; }
+
+    public double getMotor() { return motor; }
+    public void setMotor(double motor) { this.motor = motor; }
+
+    public TipoCombustible getTipoCombustible() { return tipoCombustible; }
+    public void setTipoCombustible(TipoCombustible tipoCombustible) { this.tipoCombustible = tipoCombustible; }
+
+    public TipoAutomovil getTipoAutomovil() { return tipoAutomovil; }
+    public void setTipoAutomovil(TipoAutomovil tipoAutomovil) { this.tipoAutomovil = tipoAutomovil; }
+
+    public int getNumeroPuertas() { return numeroPuertas; }
+    public void setNumeroPuertas(int numeroPuertas) { this.numeroPuertas = numeroPuertas; }
+
+    public int getCantidadAsientos() { return cantidadAsientos; }
+    public void setCantidadAsientos(int cantidadAsientos) { this.cantidadAsientos = cantidadAsientos; }
+
+    public int getVelocidadMaxima() { return velocidadMaxima; }
+    public void setVelocidadMaxima(int velocidadMaxima) { this.velocidadMaxima = velocidadMaxima; }
+
+    public Color getColor() { return color; }
+    public void setColor(Color color) { this.color = color; }
+
+    public int getVelocidadActual() { return velocidadActual; }
+    public void setVelocidadActual(int velocidadActual) { this.velocidadActual = velocidadActual; }
+
+    public void acelerar(int cantidad) {
+        if (velocidadActual + cantidad > velocidadMaxima) {
+            System.out.println("No se puede superar la velocidad maxima de " + velocidadMaxima + " km/h.");
+        } else {
+            velocidadActual += cantidad;
+        }
+    }
+
+    public void desacelerar(int cantidad) {
+        if (velocidadActual - cantidad < 0) {
+            System.out.println("La velocidad no puede ser negativa.");
+        } else {
+            velocidadActual -= cantidad;
+        }
+    }
+
+    public void frenar() {
+        velocidadActual = 0;
+    }
+
+    public double calcularTiempoEstimado(double distancia) {
+        if (velocidadActual == 0) {
+            System.out.println("No se puede calcular el tiempo: velocidad actual es 0.");
+            return -1;
+        }
+        return distancia / velocidadActual;
+    }
+
+    public void mostrarDatos() {
+        System.out.println("Marca: " + marca);
+        System.out.println("Modelo: " + modelo);
+        System.out.println("Motor: " + motor + "L");
+        System.out.println("Tipo de Combustible: " + tipoCombustible);
+        System.out.println("Tipo de Automovil: " + tipoAutomovil);
+        System.out.println("Numero de Puertas: " + numeroPuertas);
+        System.out.println("Cantidad de pasajeros: " + cantidadAsientos);
+        System.out.println("Velocidad Maxima: " + velocidadMaxima + " km/h");
+        System.out.println("Color: " + color);
+        System.out.println("Velocidad constante: " + velocidadActual + " km/h");
+    }
+}
